@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Glowora Skincare"
+description = "A responsive skincare storefront translated from the Glowora presentation deck, with product discovery, product details, brand story, contact, and policy pages."
+version = "1.0.0"
+id = "artifacts/glowora-skincare"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18170
+
+[services.development]
+run = "pnpm --filter @workspace/glowora-skincare run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/glowora-skincare", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/glowora-skincare/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18170"
+BASE_PATH = "/"

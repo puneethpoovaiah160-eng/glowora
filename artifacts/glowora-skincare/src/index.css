@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Work+Sans:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --radius-lg: 1rem;
+  --radius-md: .75rem;
+  --radius-sm: .5rem;
+}
+
+:root {
+  --background: 42 45% 96%;
+  --foreground: 137 21% 20%;
+  --card: 42 52% 98%;
+  --card-foreground: 137 21% 20%;
+  --popover: 42 52% 98%;
+  --popover-foreground: 137 21% 20%;
+  --primary: 106 24% 33%;
+  --primary-foreground: 42 45% 96%;
+  --secondary: 101 27% 75%;
+  --secondary-foreground: 137 21% 20%;
+  --muted: 38 25% 90%;
+  --muted-foreground: 137 10% 43%;
+  --accent: 6 52% 82%;
+  --accent-foreground: 137 21% 20%;
+  --border: 106 14% 78%;
+  --input: 106 14% 78%;
+  --ring: 106 24% 33%;
+  --app-font-sans: 'Work Sans', sans-serif;
+  --app-font-serif: 'Alice', Georgia, serif;
+  --radius: .85rem;
+}
+
+.dark {
+  --background: 138 19% 13%;
+  --foreground: 42 45% 96%;
+  --card: 138 17% 17%;
+  --card-foreground: 42 45% 96%;
+  --popover: 138 17% 17%;
+  --popover-foreground: 42 45% 96%;
+  --primary: 101 27% 75%;
+  --primary-foreground: 138 19% 13%;
+  --secondary: 106 24% 33%;
+  --secondary-foreground: 42 45% 96%;
+  --muted: 138 12% 24%;
+  --muted-foreground: 42 18% 75%;
+  --accent: 6 52% 72%;
+  --accent-foreground: 138 19% 13%;
+  --border: 106 14% 33%;
+  --input: 106 14% 33%;
+  --ring: 101 27% 75%;
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body { @apply font-sans antialiased bg-background text-foreground; margin: 0; }
+  button, a, input, textarea, select { font: inherit; }
+  ::selection { background: #e9bfb9; color: #31452f; }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--app-font-serif); }
+  .container-glowora { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+  .text-balance { text-wrap: balance; }
+  .eyebrow { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; }
+}
+
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .035;
+  z-index: 30;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+}
+
+.reveal { animation: rise .65s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.bag-overlay { animation: bag-fade .22s ease both; }
+.bag-panel { animation: bag-slide .32s cubic-bezier(.2,.75,.25,1) both; }
+@keyframes bag-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bag-slide { from { opacity: .7; transform: translateX(28px); } to { opacity: 1; transform: translateX(0); } }
+.image-lift { transition: transform .5s cubic-bezier(.2,.75,.25,1), filter .5s ease; }
+.image-lift:hover { transform: scale(1.035); filter: saturate(1.05); }
+.focus-ring:focus-visible { outline: 2px solid #486841; outline-offset: 4px; }

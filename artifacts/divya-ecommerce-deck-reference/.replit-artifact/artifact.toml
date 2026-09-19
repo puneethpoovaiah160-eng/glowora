@@ -1,0 +1,28 @@
+kind = "slides"
+previewPath = "/__deck-reference/"
+title = "Divya E-commerce Deck Reference"
+description = "Imported presentation used as the visual and content reference for the Divya e-commerce website."
+version = "1.0.0"
+id = "artifacts/divya-ecommerce-deck-reference"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/__deck-reference/" ]
+localPort = 25627
+
+[services.development]
+run = "pnpm --filter @workspace/divya-ecommerce-deck-reference run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/divya-ecommerce-deck-reference", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/divya-ecommerce-deck-reference/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25627"
+BASE_PATH = "/__deck-reference/"
